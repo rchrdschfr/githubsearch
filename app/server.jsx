@@ -1,5 +1,5 @@
-/* The code in this file is run on the server and is used
-   to gives us server side rendering capabilities */
+/* The code in this file is run on the server and is used to give us server side 
+   rendering capabilities */
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
