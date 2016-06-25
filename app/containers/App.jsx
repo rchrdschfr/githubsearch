@@ -1,4 +1,4 @@
-/* This is our only "container" component, which means that is not concerned
+/* This is our only "container" component, which means that it is not concerned
    with presentation details, and is more concerned about passing data to our
    presentation components by acting as bridge between the Redux store and
    our React components. */
