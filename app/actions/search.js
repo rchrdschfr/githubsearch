@@ -13,6 +13,10 @@ import { GITHUB_USER_NAME, GITHUB_PASSWORD, TYPING_DELAY, DEFAULT_SEARCH_ERROR_M
 
 polyfill();
 
+/* Make an AJAX request to the GitHubAPI using a GET request. Unauthenticated
+   requests are allowed 10 requests per minute while authenticated ones are
+   allowed 30. I made a dummy GitHub account whose crendentials I have
+   used here to allow us to get a higher rate limit. */
 function makeGitHubSearchRequest(query) {
   return get('https://api.github.com/search/repositories', {
     params: {
@@ -47,13 +51,10 @@ function createGitHubSearchFailure(message) {
   }
 }
 
-export function updateSearchField(text) {
-  return {
-    type: types.UPDATE_SEARCH_FIELD,
-    text
-  }
-}
-
+/* This action will retrieve search results from the GitHub API based on the
+   current set of filters, sorts, search terms, and the pages that have already
+   been loaded. If the retrieval is successful, it will update the app state
+   to reflect the results of the search. Otherwise it dispatches an error. */
 export function fetchSearchResults() {
   return (dispatch, getState) => {
     let state = getState();
@@ -125,6 +126,9 @@ function updateSearchResultsCountTotal(count) {
   }
 }
 
+/* We want to wait until the user is done typing before we fetch results, so
+   we set a timeout at the end of each keystroke. If a key is pressed before the
+   timeout clears, remove the old timeout and set a new one. */
 export function typingInSearchField(text) {
   return (dispatch, getState) => {
     clearTimeout(getState().search.typingTimeoutID);
@@ -140,6 +144,13 @@ function setTypingTimeout(timeoutID) {
   return {
     type: types.SET_SEARCH_FIELD_TYPING_TIMEOUT,
     timeoutID
+  }
+}
+
+export function updateSearchField(text) {
+  return {
+    type: types.UPDATE_SEARCH_FIELD,
+    text
   }
 }
 
@@ -177,6 +188,7 @@ function constructQueryString(query) {
     queryString += ` fork:true`;
   }
 
+  // generate a timesteamp based on the filter with the format that the GitHub API expects
   function getTimestamp(value) {
     let time = moment();
     let timeStamp = "";
