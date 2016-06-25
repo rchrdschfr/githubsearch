@@ -15,8 +15,9 @@ export default function render(req, res) {
     // can be fetched from the server, put it here
   });
   const initialState = store.getState();
+   // the Provider component gives us access to the Redux store
   const componentHTML = renderToString(
-    <Provider store={store}> // the Provider component gives us access to the Redux store
+    <Provider store={store}>
       <App />
     </Provider>
   );
