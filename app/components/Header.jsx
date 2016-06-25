@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
 
-import { toggleFilters, openFilters } from 'actions/filters';
+import { openFilters } from 'actions/filters';
 
 class Header extends Component {
   constructor(props) {

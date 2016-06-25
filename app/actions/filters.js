@@ -9,17 +9,6 @@ import { fetchSearchResults, clearSearchResults } from 'actions/search';
 
 import { TYPING_DELAY } from 'constants';
 
-export function toggleFilters() {
-  return (dispatch, getState) => {
-    if (getState().open) {
-      return dispatch(closeFilters());
-    }
-    else {
-      return dispatch(openFilters());
-    }
-  }
-}
-
 export function openFilters() {
   return {
     type: types.OPEN_FILTERS
