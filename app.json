@@ -1,0 +1,6 @@
+{
+  "name": "GitHubSearch",
+  "description": "An awesome way to search GitHub!",
+  "repository": "https://github.com/rchrdschfr/githubsearch",
+  "keywords": ["node", "express", "static", "react", "webpack"],
+}

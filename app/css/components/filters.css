@@ -1,0 +1,20 @@
+.filters {
+  /*padding-left: 20px;
+  padding-right: 20px;*/
+}
+  .filter {
+    margin: 20px 0;
+  }
+  .language-filter {
+    margin-top: 0;
+  }
+  .show-forked-repos-filter {
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+  .author-filter {
+    margin-top: 0px;
+  }
+  .clear-filter {
+    cursor: pointer;
+  }

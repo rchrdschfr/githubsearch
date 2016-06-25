@@ -1,0 +1,8 @@
+.details ul { padding-left: 0; }
+.details ul li { list-style: none; display: inline; }
+.details ul li.opaque { opacity: 0.6; }
+.details ul li:after { content: " \2219 "; }
+.details ul li:last-child:after { content: none; }
+
+.search-result a { text-decoration: none; color: rgb(0, 188, 212) }
+.search-result a:hover { text-decoration: underline; }

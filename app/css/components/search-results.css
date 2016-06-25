@@ -1,0 +1,12 @@
+.search-results {
+  margin-top: 20px;
+}
+
+.results-list {
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+.result {
+  margin-bottom: 40px;
+}
