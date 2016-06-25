@@ -2,7 +2,7 @@
 
 A more awesome way to search GitHub repositories than github.com's official search.
 
-See it in production at [https://infinite-atoll-45060.herokuapp.com/](https://infinite-atoll-45060.herokuapp.com/)
+See it in production at [https://salty-beyond-55867.herokuapp.com/](https://salty-beyond-55867.herokuapp.com/)
 
 ### Development
 
