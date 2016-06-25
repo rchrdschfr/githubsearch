@@ -132,9 +132,10 @@ function updateSearchResultsCountTotal(count) {
 export function typingInSearchField(text) {
   return (dispatch, getState) => {
     clearTimeout(getState().search.typingTimeoutID);
+    dispatch(clearSearchResults());
     dispatch(updateSearchField(text));
     return dispatch(setTypingTimeout(setTimeout(() => {
-      dispatch(clearSearchResults());
+      //dispatch(clearSearchResults());
       dispatch(fetchSearchResults());
     }, TYPING_DELAY)));
   }

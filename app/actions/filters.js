@@ -116,21 +116,18 @@ function updateShowForkedReposFilter(showForkedRepos) {
    timeout clears, remove the old timeout and set a new one. */
 export function changeAuthorFilter(text, typing = true) {
   return (dispatch, getState) => {
-    let updateResults = () => {
-      dispatch(clearSearchResults());
-      dispatch(fetchSearchResults());
-    }
+    dispatch(clearSearchResults());
     if (typing) {
       clearTimeout(getState().filters.typingAuthorFilterTimeoutID);
       dispatch(updateAuthorFilter(text));
       return dispatch(setAuthorFilterTypingTimeout(setTimeout(() => {
-        updateResults();
+        dispatch(fetchSearchResults());
       }, TYPING_DELAY)));
 
     }
     else {
       dispatch(updateAuthorFilter(text));
-      updateResults();
+      return dispatch(fetchSearchResults());
     }
   }
 }
