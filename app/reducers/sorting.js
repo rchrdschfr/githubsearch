@@ -8,11 +8,13 @@ export default function sorting(state = {
 }, action = {}) {
   switch (action.type) {
     case CHANGE_SORT_ORDER:
-      state.order = action.order;
-      return {...state};
+      return Object.assign({}, state, {
+        order: action.order
+      });
     case CHANGE_SORT_TYPE:
-      state.type = action.sortType;
-      return {...state};
+      return Object.assign({}, state, {
+        type: action.sortType
+      });
     default:
       return state;
   }

@@ -19,48 +19,58 @@ export default function search(state = {
 }, action = {}) {
   switch (action.type) {
     case UPDATE_SEARCH_FIELD:
-      state.searchText = action.text;
-      return {...state};
+      return Object.assign({}, state, {
+        searchText: action.text
+      });
     case UPDATE_SEARCH_RESULTS:
-      let results = [...state.results, ...action.results];
-      state.results = results;
-      return {...state};
+      return Object.assign({}, state, {
+        results: [...state.results, ...action.results]
+      });
     case GITHUB_SEARCH_REQUEST:
-      state.searching = true;
-      return {...state};
+      return Object.assign({}, state, {
+        searching: true
+      });
     case GITHUB_SEARCH_SUCCESS:
-      state.searching = false;
-      state.searchError = false;
-      state.errorText = '';
-      state.pagesLoaded += 1;
-      return {...state};
+      return Object.assign({}, state, {
+        searching: false,
+        searchError: false,
+        errorText: '',
+        pagesLoaded: state.pagesLoaded + 1
+      });
     case GITHUB_SEARCH_FAILURE:
-      state.searching = false;
-      state.searchError = true;
-      state.errorText = action.message;
-      return {...state};
+      return Object.assign({}, state, {
+        searching: false,
+        searchError: true,
+        errorText: action.message
+      });
     case SET_SEARCH_FIELD_TYPING_TIMEOUT:
-      state.typingTimeoutID = action.timeoutID;
-      return {...state};
+      return Object.assign({}, state, {
+        typingTimeoutID: action.timeoutID
+      });
     case CLEAR_SEARCH_RESULTS:
-      state.results = [];
-      state.searchError = false;
-      state.errorText = '';
-      state.totalResultCount = 0;
-      state.pagesLoaded = 0;
-      return {...state};
+      return Object.assign({}, state, {
+        results: [],
+        searchError: false,
+        errorText: '',
+        totalResultCount: 0,
+        pagesLoaded: 0
+      });
     case UPDATE_SEARCH_RESULTS_COUNT_TOTAL:
-      state.totalResultCount = action.count;
-      return {...state};
+      return Object.assign({}, state, {
+        totalResultCount: action.count
+      });
     case SCROLLED_PAST_TOP:
-      state.hasScrolledPastTop = true;
-      return {...state};
+      return Object.assign({}, state, {
+        hasScrolledPastTop: true
+      });
     case SCROLLED_INTO_TOP:
-      state.hasScrolledPastTop = false;
-      return {...state};
+      return Object.assign({}, state, {
+        hasScrolledPastTop: false
+      });
     case DOM_LOADED:
-      state.domLoaded = true;
-      return {...state};
+      return Object.assign({}, state, {
+        domLoaded: true
+      });
     default:
       return state;
   }
