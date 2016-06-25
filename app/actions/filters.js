@@ -122,14 +122,27 @@ function updateShowForkedReposFilter(showForkedRepos) {
   }
 }
 
-export function changeAuthorFilter(text) {
+/* We want to wait until the user is done typing before we fetch results, so
+   we set a timeout at the end of each keystroke. If a key is pressed before the
+   timeout clears, remove the old timeout and set a new one. */
+export function changeAuthorFilter(text, typing = true) {
   return (dispatch, getState) => {
-    clearTimeout(getState().filters.typingAuthorFilterTimeoutID);
-    dispatch(updateAuthorFilter(text));
-    return dispatch(setAuthorFilterTypingTimeout(setTimeout(() => {
+    let updateResults = () => {
       dispatch(clearSearchResults());
       dispatch(fetchSearchResults());
-    }, TYPING_DELAY)));
+    }
+    if (typing) {
+      clearTimeout(getState().filters.typingAuthorFilterTimeoutID);
+      dispatch(updateAuthorFilter(text));
+      return dispatch(setAuthorFilterTypingTimeout(setTimeout(() => {
+        updateResults();
+      }, TYPING_DELAY)));
+
+    }
+    else {
+      dispatch(updateAuthorFilter(text));
+      updateResults();
+    }
   }
 }
 
@@ -179,6 +192,6 @@ export function clearForksFilter() {
 
 export function clearAuthorFilter() {
   return (dispatch, getState) => {
-    return dispatch(changeAuthorFilter(""));
+    return dispatch(changeAuthorFilter("", false));
   }
 }
