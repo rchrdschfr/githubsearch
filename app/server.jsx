@@ -1,3 +1,6 @@
+/* The code in this file is run on the server and is used
+   to gives us server side rendering capabilities */
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
@@ -5,17 +8,20 @@ import App from 'containers/App';
 import configureStore from 'store/configureStore';
 import header from 'components/Meta';
 
+/* Render the App once a request hits the server */
 export default function render(req, res) {
   const store = configureStore({
-    // put initial state here
+    // if you want the initial state to reflect data that
+    // can be fetched from the server, put it here
   });
   const initialState = store.getState();
   const componentHTML = renderToString(
-    <Provider store={store}>
+    <Provider store={store}> // the Provider component gives us access to the Redux store
       <App />
     </Provider>
   );
 
+  // generate the initial HTML and respond to the client with it
   res.status(200).send(`
     <!doctype html>
     <html ${header.htmlAttributes.toString()}>

@@ -1,3 +1,5 @@
+/* This is where we define identifiers for our Redux actions */
+
 // filters
 export const TOGGLE_FILTERS = 'TOGGLE_FILTERS';
 export const OPEN_FILTERS = 'OPEN_FILTERS';

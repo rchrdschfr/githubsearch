@@ -1,4 +1,6 @@
-// Import all your needed files first (webpack will grab the url)
+/* Configure what the HTML head looks like. To be used by React Helmet. */
+
+// import icon data. Webpack figures out the href used
 import chromecon from 'images/android-icon-192x192.png';
 import applecon from 'images/apple-icon-152x152.png';
 import mscon from 'images/ms-icon-144x144.png';

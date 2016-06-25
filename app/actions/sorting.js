@@ -1,3 +1,9 @@
+/* Actions are functions that, by default, return an object containing a property
+   identifying the type of action, and an optional payload of data to be associated
+   with the action. The dispatcher takes this information to the reducer where the
+   state is modified. We can also return a function or a promise if we want to do
+   things like dispatch multiple actions, or fetch data from an external API. */
+
 import * as types from 'types';
 import { fetchSearchResults, clearSearchResults } from 'actions/search';
 

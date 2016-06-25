@@ -1,3 +1,8 @@
+/* This is our only "container" component, which means that is not concerned
+   with presentation details, and is more concerned about passing data to our
+   presentation components by acting as bridge between the Redux store and
+   our React components. */
+
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
@@ -72,6 +77,10 @@ App.propTypes = {
   domLoaded: PropTypes.bool
 }
 
+/* The connect function allows us to map the application state (data in the Redux store)
+   and pass that data to our component in the form of props. Every time the state changes,
+   this function is run and React determines if it is neccesary to re-render any part of
+   the document */
 export default connect((state) => {
   return {
     filters: state.filters,
