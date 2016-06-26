@@ -16,8 +16,8 @@ export default function configureStore(initialState) {
     middleware.push(createLogger()); // write to log when the state changes in dev mode
   }
 
-  /* create the store using the reducers we defined, the initial state from server side rendering
-     and the middleware we've chose */
+  /* create the store using the reducers we defined, the initial state from
+     server side rendering and the middleware we've chosen */
   const store = createStore(rootReducer, initialState, compose(
     responsiveStoreEnhancer,
     applyMiddleware(...middleware),
