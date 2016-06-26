@@ -60,7 +60,7 @@ export function fetchSearchResults() {
     let state = getState();
 
     if (!state.search.searchText) {
-      return dispatch(clearSearchResults());
+      return;
     }
 
     let query = {
