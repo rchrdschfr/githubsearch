@@ -1,4 +1,4 @@
-/* This is where we define identifiers for our Redux actions */
+/* This is where we define the types of Redux actions that will be dispatched. */
 
 // filters
 export const TOGGLE_FILTERS = 'TOGGLE_FILTERS';
@@ -26,5 +26,5 @@ export const UPDATE_SEARCH_RESULTS_COUNT_TOTAL = 'UPDATE_SEARCH_RESULTS_COUNT_TO
 export const DOM_LOADED = 'DOM_LOADED';
 
 // sorting
-export const CHANGE_SORT_TYPE = 'CHANGE_SORT_TYPE';
-export const CHANGE_SORT_ORDER = 'CHANGE_SORT_ORDER';
+export const UPDATE_SORT_TYPE = 'UPDATE_SORT_TYPE';
+export const UPDATE_SORT_ORDER = 'UPDATE_SORT_ORDER';

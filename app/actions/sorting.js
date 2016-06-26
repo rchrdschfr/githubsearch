@@ -17,7 +17,7 @@ export function changeSortOrder(order) {
 
 function updateSortOrder(order) {
   return {
-    type: types.CHANGE_SORT_ORDER,
+    type: types.UPDATE_SORT_ORDER,
     order
   }
 }
@@ -32,7 +32,7 @@ export function changeSortType(type) {
 
 function updateSortType(type) {
   return {
-    type: types.CHANGE_SORT_TYPE,
+    type: types.UPDATE_SORT_TYPE,
     sortType: type
   }
 }
