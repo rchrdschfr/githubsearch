@@ -29,7 +29,7 @@ export function changeLanguageFilter(language) {
   }
 }
 
-function updateLanguageFilter(language) {
+export function updateLanguageFilter(language) {
   return {
     type: types.UPDATE_LANGUAGE_FILTER,
     language
@@ -44,7 +44,7 @@ export function changeLastCommitFilter(value) {
   }
 }
 
-function updateLastCommitFilter(value) {
+export function updateLastCommitFilter(value) {
   return {
     type: types.UPDATE_LAST_COMMIT_FILTER,
     value
@@ -59,7 +59,7 @@ export function changeRepoCreatedFilter(value) {
   }
 }
 
-function updateRepoCreatedFilter(value) {
+export function updateRepoCreatedFilter(value) {
   return {
     type: types.UPDATE_REPO_CREATED_FILTER,
     value
@@ -74,7 +74,7 @@ export function changeStarsFilter(stars) {
   }
 }
 
-function updateStarsFilter(stars) {
+export function updateStarsFilter(stars) {
   return {
     type: types.UPDATE_STARS_FILTER,
     stars
@@ -89,7 +89,7 @@ export function changeForksFilter(forks) {
   }
 }
 
-function updateForksFilter(forks) {
+export function updateForksFilter(forks) {
   return {
     type: types.UPDATE_FORKS_FILTER,
     forks
@@ -104,7 +104,7 @@ export function changeShowForkedReposFilter(showForkedRepos) {
   }
 }
 
-function updateShowForkedReposFilter(showForkedRepos) {
+export function updateShowForkedReposFilter(showForkedRepos) {
   return {
     type: types.UPDATE_SHOW_FORKED_REPOS_FILTER,
     showForkedRepos
@@ -132,7 +132,7 @@ export function changeAuthorFilter(text, typing = true) {
   }
 }
 
-function setAuthorFilterTypingTimeout(timeoutID) {
+export function setAuthorFilterTypingTimeout(timeoutID) {
   return {
     type: types.SET_AUTHOR_FILTER_TYPING_TIMEOUT,
     timeoutID
