@@ -74,7 +74,7 @@ export function fetchSearchResults() {
     dispatch(createGitHubSearchRequest());
     return makeGitHubSearchRequest(query)
       .then(res => {
-        console.log(res);
+        console.log('GitHub API response', res);
         if (res.status === 200) {
           dispatch(updateSearchResults(res.data.items.map((item) => {
             return {
@@ -135,7 +135,6 @@ export function typingInSearchField(text) {
     dispatch(clearSearchResults());
     dispatch(updateSearchField(text));
     return dispatch(setTypingTimeout(setTimeout(() => {
-      //dispatch(clearSearchResults());
       dispatch(fetchSearchResults());
     }, TYPING_DELAY)));
   }
@@ -220,7 +219,7 @@ function constructQueryString(query) {
     return timeStamp;
   }
 
-  console.log(queryString);
+  console.log('query string', queryString);
 
   return queryString;
 }
