@@ -28,7 +28,7 @@ describe('Sorting reducer', () => {
     });
   });
 
-  it('Should handle UPDATE_SORT_TYPE', () => {
+  it('Should handle CHANGE_SORT_TYPE', () => {
     expect(
       reducer(undefined, {
         type: types.UPDATE_SORT_TYPE,
