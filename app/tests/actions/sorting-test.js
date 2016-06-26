@@ -24,6 +24,13 @@ describe('Sorting Actions', () => {
       sandbox.restore();
     });
 
+    const fetchResultsSuccessActions = [
+      { type: types.GITHUB_SEARCH_REQUEST },
+      { type: types.UPDATE_SEARCH_RESULTS, results: [] },
+      { type: types.UPDATE_SEARCH_RESULTS_COUNT_TOTAL, count: 0 },
+      { type: types.GITHUB_SEARCH_SUCCESS }
+    ]
+
     it('clears results when search term is not blank', done => {
       const store = mockStore({
         filters: {},
@@ -45,10 +52,7 @@ describe('Sorting Actions', () => {
           { type: types.UPDATE_SORT_TYPE, sortType: "relevance" },
           { type: types.UPDATE_SORT_ORDER, order: "desc" },
           { type: types.CLEAR_SEARCH_RESULTS },
-          { type: types.GITHUB_SEARCH_REQUEST },
-          { type: types.UPDATE_SEARCH_RESULTS, results: [] },
-          { type: types.UPDATE_SEARCH_RESULTS_COUNT_TOTAL, count: 0 },
-          { type: types.GITHUB_SEARCH_SUCCESS }
+          ...fetchResultsSuccessActions
         ]);
       }).then(done).catch(done);
     });
@@ -92,10 +96,7 @@ describe('Sorting Actions', () => {
         expect(store.getActions()).toEqual([
           { type: types.UPDATE_SORT_ORDER, order: 'asc' },
           { type: types.CLEAR_SEARCH_RESULTS },
-          { type: types.GITHUB_SEARCH_REQUEST },
-          { type: types.UPDATE_SEARCH_RESULTS, results: [] },
-          { type: types.UPDATE_SEARCH_RESULTS_COUNT_TOTAL, count: 0 },
-          { type: types.GITHUB_SEARCH_SUCCESS }
+          ...fetchResultsSuccessActions
         ]);
       }).then(done).catch(done);
     });
@@ -121,10 +122,7 @@ describe('Sorting Actions', () => {
         expect(store.getActions()).toEqual([
           { type: types.UPDATE_SORT_TYPE, sortType: 'stars' },
           { type: types.CLEAR_SEARCH_RESULTS },
-          { type: types.GITHUB_SEARCH_REQUEST },
-          { type: types.UPDATE_SEARCH_RESULTS, results: [] },
-          { type: types.UPDATE_SEARCH_RESULTS_COUNT_TOTAL, count: 0 },
-          { type: types.GITHUB_SEARCH_SUCCESS }
+          ...fetchResultsSuccessActions
         ]);
       }).then(done).catch(done);
     });
