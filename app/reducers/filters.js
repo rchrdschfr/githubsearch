@@ -32,7 +32,7 @@ export default function filters(state = {
     case UPDATE_STARS_FILTER:
       return { ...state, stars: action.stars }
     case UPDATE_FORKS_FILTER:
-      return { ...state, forks: actions.forks }
+      return { ...state, forks: action.forks }
     case UPDATE_AUTHOR_FILTER:
       return { ...state, author: action.text }
     case UPDATE_SHOW_FORKED_REPOS_FILTER:
