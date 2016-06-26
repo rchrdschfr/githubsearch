@@ -17,50 +17,38 @@ export default function search(state = {
 }, action = {}) {
   switch (action.type) {
     case UPDATE_SEARCH_FIELD:
-      return Object.assign({}, state, {
-        searchText: action.text
-      });
+      return { ...state, searchText: action.text }
     case UPDATE_SEARCH_RESULTS:
-      return Object.assign({}, state, {
-        results: [...state.results, ...action.results]
-      });
+      return { ...state, results: [...state.results, ...action.results] }
     case GITHUB_SEARCH_REQUEST:
-      return Object.assign({}, state, {
-        searching: true
-      });
+      return { ...state, searching: true }
     case GITHUB_SEARCH_SUCCESS:
-      return Object.assign({}, state, {
+      return { ...state, ...{
         searching: false,
         searchError: false,
         errorText: '',
         pagesLoaded: state.pagesLoaded + 1
-      });
+      } }
     case GITHUB_SEARCH_FAILURE:
-      return Object.assign({}, state, {
+      return { ...state, ...{
         searching: false,
         searchError: true,
         errorText: action.message
-      });
+      } }
     case SET_SEARCH_FIELD_TYPING_TIMEOUT:
-      return Object.assign({}, state, {
-        typingTimeoutID: action.timeoutID
-      });
+      return { ...state, typingTimeoutID: action.timeoutID }
     case CLEAR_SEARCH_RESULTS:
-      return Object.assign({}, state, {
+      return { ...state, ...{
         results: [],
         searchError: false,
         errorText: '',
         totalResultCount: 0,
         pagesLoaded: 0
-      });
+      } }
     case UPDATE_SEARCH_RESULTS_COUNT_TOTAL:
-      return Object.assign({}, state, {
-        totalResultCount: action.count
-      });
+      return { ...state, totalResultCount: action.count }
     case DOM_LOADED:
-      return Object.assign({}, state, {
-        domLoaded: true
-      });
+      return { ...state, domLoaded: true }
     default:
       return state;
   }

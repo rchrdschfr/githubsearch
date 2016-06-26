@@ -20,45 +20,25 @@ export default function filters(state = {
 }, action = {}) {
   switch (action.type) {
     case CLOSE_FILTERS:
-      return Object.assign({}, state, {
-        open: false
-      });
+      return { ...state, open: false }
     case OPEN_FILTERS:
-      return Object.assign({}, state, {
-        open: true
-      });
+      return { ...state, open: true }
     case UPDATE_LANGUAGE_FILTER:
-      return Object.assign({}, state, {
-        language: action.language
-      });
+      return { ...state, language: action.language }
     case UPDATE_LAST_COMMIT_FILTER:
-      return Object.assign({}, state, {
-        lastCommit: action.value
-      });
+      return { ...state, lastCommit: action.value }
     case UPDATE_REPO_CREATED_FILTER:
-      return Object.assign({}, state, {
-        repoCreated: action.value
-      });
+      return { ...state, repoCreated: action.value }
     case UPDATE_STARS_FILTER:
-      return Object.assign({}, state, {
-        stars: action.stars
-      });
+      return { ...state, stars: action.stars }
     case UPDATE_FORKS_FILTER:
-      return Object.assign({}, state, {
-        forks: action.forks
-      });
+      return { ...state, forks: actions.forks }
     case UPDATE_AUTHOR_FILTER:
-      return Object.assign({}, state, {
-        author: action.text
-      });
+      return { ...state, author: action.text }
     case UPDATE_SHOW_FORKED_REPOS_FILTER:
-      return Object.assign({}, state, {
-        showForkedRepos: action.showForkedRepos
-      });
+      return { ...state, showForkedRepos: action.showForkedRepos }
     case SET_AUTHOR_FILTER_TYPING_TIMEOUT:
-      return Object.assign({}, state, {
-        typingAuthorFilterTimeoutID: action.timeoutID
-      });
+      return { ...state, typingAuthorFilterTimeoutID: action.timeoutID }
     default:
       return state;
   }
