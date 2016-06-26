@@ -17,18 +17,14 @@ describe('Search Actions', () => {
     describe('Fetch Search Results', () => {
       describe('Search Term is Empty', () => {
 
-        it("clears results and doesn't search", () => {
+        it("does nothing", () => {
           const store = mockStore({
             search: {
               searchText: ''
             }
           });
           store.dispatch(actions.fetchSearchResults());
-          expect(store.getActions()).toEqual(
-            [
-              { type: types.CLEAR_SEARCH_RESULTS }
-            ]
-          );
+          expect(store.getActions()).toEqual([]);
         });
 
       });
@@ -45,27 +41,82 @@ describe('Search Actions', () => {
         });
 
         it("dispatches request and success actions when status is 200", done => {
-          expect(1).toEqual(1);
-          done();
           const store = mockStore({
+            filters: {},
             search: {
-              searchText: 'omg'
-            }
+              searchText: 'test'
+            },
+            sorting: {}
           });
 
-          sandbox.stub(axios, 'get').returns(Promise.resolve({ status: 200 }));
-          store.dispatch(actions.fetchSearchResults())
-            then(() => {
-              expect(store.getActions().length).toEqual(3);
-            }).then(done).catch(done);
+          sandbox.stub(axios, 'get').returns(Promise.resolve({
+            status: 200,
+            data: {
+              items: [],
+              total_count: 0
+            }
+          }));
+          store.dispatch(actions.fetchSearchResults()).then(() => {
+            expect(store.getActions()).toEqual([
+              { type: types.GITHUB_SEARCH_REQUEST },
+              { type: types.UPDATE_SEARCH_RESULTS, results: [] },
+              { type: types.UPDATE_SEARCH_RESULTS_COUNT_TOTAL, count: 0 },
+              { type: types.GITHUB_SEARCH_SUCCESS }
+            ]);
+          }).then(done).catch(done);
         });
 
+        it("dispatches request and failure actions when status is not 200", done => {
+          const store = mockStore({
+            filters: {},
+            search: {
+              searchText: 'test'
+            },
+            sorting: {}
+          });
+
+          sandbox.stub(axios, 'get').returns(Promise.resolve({
+            status: 422
+          }));
+          store.dispatch(actions.fetchSearchResults()).then(() => {
+            expect(store.getActions().length).toEqual(2);
+            expect(store.getActions().filter((action) => {
+              return action.type === types.GITHUB_SEARCH_FAILURE && typeof action.message === 'string'
+            }).length).toEqual(1);
+            expect(store.getActions().filter((action) => {
+              return action.type !== types.GITHUB_SEARCH_FAILURE
+            })).toEqual(
+              [ { type: types.GITHUB_SEARCH_REQUEST } ]
+            );
+          }).then(done).catch(done);
+        });
+
+        it("dispatches appropriate actions when typing", done => {
+          const store = mockStore({
+            filters: {},
+            search: {
+              searchText: 'test'
+            },
+            sorting: {}
+          });
+
+          store.dispatch(actions.typingInSearchField('test'));
+          expect(store.getActions().length).toEqual(3);
+          expect(store.getActions().filter((action) => {
+            return action.type === types.SET_SEARCH_FIELD_TYPING_TIMEOUT && typeof action.timeoutID === 'number';
+          }).length).toEqual(1);
+          expect(store.getActions().filter((action) => {
+            return action.type !== types.SET_SEARCH_FIELD_TYPING_TIMEOUT
+          })).toEqual(
+            [
+              { type: types.CLEAR_SEARCH_RESULTS },
+              { type: types.UPDATE_SEARCH_FIELD, text: 'test' }
+            ]
+          )
+          done();
+        });
       });
     }); //fetch results
-
-    describe('Typing in search field', () => {
-
-    })
   }); // async actions
 
   describe('Action creators', () => {
