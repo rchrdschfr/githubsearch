@@ -16,10 +16,10 @@ describe('Sorting reducer', () => {
     );
   });
 
-  it('Should handle CHANGE_SORT_ORDER', () => {
+  it('Should handle UPDATE_SORT_ORDER', () => {
     expect(
       reducer(undefined, {
-        type: types.CHANGE_SORT_ORDER,
+        type: types.UPDATE_SORT_ORDER,
         order: 'ascending'
       })
     ).toEqual({
@@ -31,7 +31,7 @@ describe('Sorting reducer', () => {
   it('Should handle CHANGE_SORT_TYPE', () => {
     expect(
       reducer(undefined, {
-        type: types.CHANGE_SORT_TYPE,
+        type: types.UPDATE_SORT_TYPE,
         sortType: 'stars'
       })
     ).toEqual({
