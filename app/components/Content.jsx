@@ -16,7 +16,7 @@ import ResultCount from 'components/search/ResultCount';
 import SearchResults from 'components/search/SearchResults';
 import Loading from 'components/Loading';
 
-import { typingInSearchField, fetchSearchResults, scrolledPastTop, scrolledIntoTop } from 'actions/search';
+import { typingInSearchField, fetchSearchResults } from 'actions/search';
 
 import { RESULTS_PER_PAGE } from 'constants';
 
@@ -33,7 +33,7 @@ class Content extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, hasScrolledPastTop } = this.props;
+    const { dispatch } = this.props;
 
     document.getElementById('search-field-input').focus();
   }
@@ -48,12 +48,6 @@ class Content extends Component {
         }
       }
     }
-  }
-
-  backToTopDisplay() {
-    const { results, hasScrolledPastTop } = this.props;
-
-    return (results.length > 0 && hasScrolledPastTop) ? "block" : "none";
   }
 
   calculateContentStyle() {

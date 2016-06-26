@@ -4,7 +4,6 @@
    our React components. */
 
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import autoBind from 'react-autobind';
 import Loader from 'react-loader';
@@ -39,15 +38,6 @@ class App extends Component {
     });
   }
 
-  onScrollPastTop() {
-    const { dispatch } = this.props;
-    dispatch(scrolledPastTop());
-  }
-  onScrollIntoTop() {
-    const { dispatch } = this.props;
-    dispatch(scrolledIntoTop());
-  }
-
   render() {
     const { domLoaded } = this.props;
 
@@ -72,7 +62,6 @@ App.propTypes = {
   searching: PropTypes.bool.isRequired,
   searchError: PropTypes.bool.isRequired,
   totalResultCount: PropTypes.number.isRequired,
-  hasScrolledPastTop: PropTypes.bool.isRequired,
   showSidebar: PropTypes.bool,
   domLoaded: PropTypes.bool
 }
@@ -93,7 +82,6 @@ export default connect((state) => {
     errorText: state.search.errorText,
     totalResultCount: state.search.totalResultCount,
     pagesLoaded: state.search.pagesLoaded,
-    hasScrolledPastTop: state.search.hasScrolledPastTop,
     showSidebar: ((open, bigScreen) => {
       if (typeof open === 'undefined') {
         return bigScreen ? true : false;

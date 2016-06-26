@@ -1,8 +1,7 @@
 import {
   UPDATE_SEARCH_FIELD, UPDATE_SEARCH_RESULTS, GITHUB_SEARCH_REQUEST,
   GITHUB_SEARCH_SUCCESS, GITHUB_SEARCH_FAILURE, SET_SEARCH_FIELD_TYPING_TIMEOUT,
-  CLEAR_SEARCH_RESULTS, UPDATE_SEARCH_RESULTS_COUNT_TOTAL,
-  SCROLLED_PAST_TOP, SCROLLED_INTO_TOP, UPDATE_PAGES_LOADED, DOM_LOADED
+  CLEAR_SEARCH_RESULTS, UPDATE_SEARCH_RESULTS_COUNT_TOTAL, UPDATE_PAGES_LOADED, DOM_LOADED
  } from 'types';
 
 export default function search(state = {
@@ -14,7 +13,6 @@ export default function search(state = {
   totalResultCount: 0,
   typingTimeoutID: null,
   pagesLoaded: 0,
-  hasScrolledPastTop: false,
   domLoaded: false
 }, action = {}) {
   switch (action.type) {
@@ -58,14 +56,6 @@ export default function search(state = {
     case UPDATE_SEARCH_RESULTS_COUNT_TOTAL:
       return Object.assign({}, state, {
         totalResultCount: action.count
-      });
-    case SCROLLED_PAST_TOP:
-      return Object.assign({}, state, {
-        hasScrolledPastTop: true
-      });
-    case SCROLLED_INTO_TOP:
-      return Object.assign({}, state, {
-        hasScrolledPastTop: false
       });
     case DOM_LOADED:
       return Object.assign({}, state, {
