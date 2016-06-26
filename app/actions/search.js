@@ -32,19 +32,19 @@ function makeGitHubSearchRequest(query) {
   });
 }
 
-function createGitHubSearchRequest() {
+export function createGitHubSearchRequest() {
   return {
     type: types.GITHUB_SEARCH_REQUEST
   }
 }
 
-function createGitHubSearchSuccess() {
+export function createGitHubSearchSuccess() {
   return {
     type: types.GITHUB_SEARCH_SUCCESS
   }
 }
 
-function createGitHubSearchFailure(message) {
+export function createGitHubSearchFailure(message) {
   return {
     type: types.GITHUB_SEARCH_FAILURE,
     message
@@ -119,7 +119,7 @@ export function updateSearchResults(results) {
   }
 }
 
-function updateSearchResultsCountTotal(count) {
+export function updateSearchResultsCountTotal(count) {
   return {
     type: types.UPDATE_SEARCH_RESULTS_COUNT_TOTAL,
     count
@@ -140,7 +140,7 @@ export function typingInSearchField(text) {
   }
 }
 
-function setTypingTimeout(timeoutID) {
+export function setTypingTimeout(timeoutID) {
   return {
     type: types.SET_SEARCH_FIELD_TYPING_TIMEOUT,
     timeoutID
