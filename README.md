@@ -14,7 +14,15 @@ See it in production at [https://salty-beyond-55867.herokuapp.com/](https://salt
 
 All frontend code is in the `app` folder, all backend code in `server`.
 
-Based on [choonkending's awesome boilerplate](https://github.com/choonkending/react-webpack-node).
+Based on [choonkending's great boilerplate](https://github.com/choonkending/react-webpack-node).
+
+### Testing
+
+Run Karma unit tests with
+
+```
+npm run test
+```
 
 ### Run it yourself
 
