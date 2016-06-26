@@ -17,7 +17,7 @@ export default function configureStore(initialState) {
   }
 
   /* create the store using the reducers we defined, the initial state from server side rendering
-     and the middleware we've chose */
+     and the middleware we've chosen */
   const store = createStore(rootReducer, initialState, compose(
     responsiveStoreEnhancer,
     applyMiddleware(...middleware),
