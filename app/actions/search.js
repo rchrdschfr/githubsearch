@@ -166,7 +166,7 @@ export function domLoaded() {
   }
 }
 
-function constructQueryString(query) {
+export function constructQueryString(query) {
   let queryString = query.text;
   if (query.filters.language) queryString += ` language:${query.filters.language}`;
   if (query.filters.author) queryString += ` user:${query.filters.author}`;
