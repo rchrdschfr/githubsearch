@@ -190,7 +190,7 @@ function constructQueryString(query) {
 
   // generate a timesteamp based on the filter with the format that the GitHub API expects
   function getTimestamp(value) {
-    let time = moment();
+    let time = moment().utc();
     let timeStamp = "";
     let format = "YYYY-MM-DDTHH:mm:ss+07:00";
     switch (value) {
