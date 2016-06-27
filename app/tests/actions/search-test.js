@@ -6,6 +6,7 @@ import axios from 'axios';
 import expect from 'expect';
 import * as actions from 'actions/search';
 import * as types from 'types';
+import moment from 'moment';
 
 polyfill();
 
@@ -180,5 +181,28 @@ describe('Search Actions', () => {
       });
     });
 
+  });
+
+  describe('Constructing the query string', () => {
+    it('returns the correct string', () => {
+      const query = {
+        text: 'test search string',
+        filters: {
+          language: 'Python',
+          author: 'test author',
+          lastCommit: 'last24Hours',
+          repoCreated: 'moreThanYear',
+          stars: 50,
+          forks: 100,
+          showForkedRepos: true
+        }
+      }
+
+      let twentyFourHoursAgo = moment().utc().subtract(1, 'days').format("YYYY-MM-DDTHH:mm:ss+07:00");
+      let oneYearAgo = moment().utc().subtract(1, 'years').format("YYYY-MM-DDTHH:mm:ss+07:00");
+      expect(actions.constructQueryString(query)).toEqual(
+        `test search string language:Python user:test author pushed:>${twentyFourHoursAgo} created:<${oneYearAgo} stars:>=50 forks:>=100 fork:true`
+      );
+    });
   });
 });
