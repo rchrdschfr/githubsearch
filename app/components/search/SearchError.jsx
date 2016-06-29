@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
-import { DEFAULT_SEARCH_ERROR_MESSAGE } from 'constants';
+import React, { PropTypes } from 'react';
 
-class SearchError extends Component {
-  constructor(props) {
-    super(props);
-    this.message = this.props.message || DEFAULT_SEARCH_ERROR_MESSAGE;
-  }
-  render() {
-    const { message } = this;
-    return <div style={{ fontFamily: "Quicksand" }}>
-      <div>{message}</div>
-      </div>
-  }
+const SearchError = ({ message }) => {
+  return <div style={{ fontFamily: "Quicksand" }}>
+    <div>{message}</div>
+    </div>
+}
+
+SearchError.propTypes = {
+  message: PropTypes.string.isRequired
 }
 
 export default SearchError;

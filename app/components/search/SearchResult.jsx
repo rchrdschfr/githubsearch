@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import autoBind from 'react-autobind';
 import moment from 'moment';
 
 import classNames from 'classnames/bind';
@@ -8,15 +7,8 @@ const cx = classNames.bind(styles);
 
 import { Card, CardHeader, CardTitle, CardText } from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
-import ArrowUp from 'material-ui/svg-icons/navigation/arrow-upward';
-import ArrowDown from 'material-ui/svg-icons/navigation/arrow-downward';
 
 class SearchResult extends Component {
-  constructor(props) {
-    super(props);
-    autoBind(this);
-  }
-
   getTimeAgo(timestamp) {
     return moment(timestamp).from(moment());
   }
@@ -26,7 +18,6 @@ class SearchResult extends Component {
   }
 
   render() {
-    const { getTimeAgo, getLanguage } = this;
     const { result } = this.props;
 
     return <Card className={cx('search-result')} style={{ fontFamily: "Quicksand" }}>
@@ -52,9 +43,9 @@ class SearchResult extends Component {
               call_split
             </FontIcon> x{result.forks}
           </li>
-          <li className={cx("opaque")}>last commit was {getTimeAgo(result.latestCommit)}</li>
-          <li className={cx("opaque")}>repo created {getTimeAgo(result.createdAt)}</li>
-          <li className={cx("opaque")}>written in <span className={cx("language")}>{getLanguage(result.language)}</span></li>
+          <li className={cx("opaque")}>last commit was {this.getTimeAgo(result.latestCommit)}</li>
+          <li className={cx("opaque")}>repo created {this.getTimeAgo(result.createdAt)}</li>
+          <li className={cx("opaque")}>written in <span className={cx("language")}>{this.getLanguage(result.language)}</span></li>
         </ul>
       </CardText>
     </Card>

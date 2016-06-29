@@ -1,7 +1,4 @@
-/* This is our only "container" component, which means that it is not concerned
-   with presentation details, and is more concerned about passing data to our
-   presentation components by acting as bridge between the Redux store and
-   our React components. */
+/* This is the component that gets mounted on to the document */
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
@@ -14,9 +11,9 @@ const cx = classNames.bind(styles);
 
 import { MuiThemeProvider, getMuiTheme } from 'material-ui/styles';
 
-import Header from 'components/Header';
-import Sidebar from 'components/Sidebar';
-import Content from 'components/Content';
+import Header from 'containers/Header';
+import Sidebar from 'containers/Sidebar';
+import Content from 'containers/Content';
 
 import { domLoaded } from 'actions/search';
 
@@ -31,10 +28,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-
+    const { onDomLoaded } = this.props;
     document.addEventListener('DOMContentLoaded', () => {
-      dispatch(domLoaded());
+      onDomLoaded();
     });
   }
 
@@ -44,9 +40,9 @@ class App extends Component {
     return <Loader loaded={domLoaded} radius={15} length={25} color={'#00BCD4'}>
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className={cx('app')}>
-          <Header {...this.props} />
-          <Sidebar {...this.props} />
-          <Content {...this.props} />
+          <Header />
+          <Sidebar />
+          <Content />
         </div>
       </MuiThemeProvider>
     </Loader>
@@ -54,40 +50,25 @@ class App extends Component {
 }
 
 App.propTypes = {
-  filters: PropTypes.object.isRequired,
-  sorting: PropTypes.object.isRequired,
-  results: PropTypes.array.isRequired,
-  searchText: PropTypes.string.isRequired,
-  screenGreaterThan: PropTypes.object.isRequired,
-  searching: PropTypes.bool.isRequired,
-  searchError: PropTypes.bool.isRequired,
-  totalResultCount: PropTypes.number.isRequired,
-  showSidebar: PropTypes.bool,
-  domLoaded: PropTypes.bool
+  domLoaded: PropTypes.bool.isRequired,
+  onDomLoaded: PropTypes.func.isRequired
 }
 
 /* The connect function allows us to map the application state (data in the Redux store)
    and pass that data to our component in the form of props. Every time the state changes,
    this function is run and React determines if it is neccesary to re-render any part of
    the document */
-export default connect((state) => {
-  return {
-    filters: state.filters,
-    sorting: state.sorting,
-    results: state.search.results,
-    searchText: state.search.searchText,
-    screenGreaterThan: state.browser.greaterThan,
-    searching: state.search.searching,
-    searchError: state.search.searchError,
-    errorText: state.search.errorText,
-    totalResultCount: state.search.totalResultCount,
-    pagesLoaded: state.search.pagesLoaded,
-    showSidebar: ((open, bigScreen) => {
-      if (typeof open === 'undefined') {
-        return bigScreen ? true : false;
+export default connect(
+  (state) => {
+    return {
+      domLoaded: state.search.domLoaded
+    }
+  },
+  (dispatch) => {
+    return {
+      onDomLoaded: () => {
+        dispatch(domLoaded());
       }
-      return open;
-    })(state.filters.open, state.browser.greaterThan.small),
-    domLoaded: state.search.domLoaded
+    }
   }
-})(App);
+)(App);

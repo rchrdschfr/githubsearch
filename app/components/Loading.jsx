@@ -15,10 +15,9 @@ class Loading extends Component {
   }
 
   render() {
-    const { getDisplayType } = this;
     const { spinnerName } = this.props;
 
-    return <div style={{ display: getDisplayType(), margin: 'auto', width: "100px", color: 'blue' }}>
+    return <div style={{ display: this.getDisplayType(), margin: 'auto', width: "100px", color: 'blue' }}>
       <Spinner spinnerName={spinnerName} />
     </div>
   }

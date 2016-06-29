@@ -1,9 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 
-class EmptyResults extends Component {
-  render() {
-    return <div style={{ fontFamily: "Quicksand" }}>No results, sorry! :(</div>
-  }
+const EmptyResults = () => {
+  return <div style={{ fontFamily: "Quicksand" }}>No results, sorry! :(</div>
 }
 
 export default EmptyResults;

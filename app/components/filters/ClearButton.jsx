@@ -26,12 +26,11 @@ class ClearButton extends Component {
   }
 
   render() {
-    const { getStyle, getIcon } = this;
     const { onClick } = this.props;
 
-    return <FontIcon className={"material-icons"} style={getStyle()}
+    return <FontIcon className={"material-icons"} style={this.getStyle()}
       onClick={onClick}>
-      {getIcon()}
+      {this.getIcon()}
     </FontIcon>
   }
 }

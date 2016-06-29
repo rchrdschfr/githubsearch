@@ -1,4 +1,4 @@
-/* The code in this file is run on the server and is used to give us server side 
+/* The code in this file is run on the server and is used to give us server side
    rendering capabilities */
 
 import React from 'react';
