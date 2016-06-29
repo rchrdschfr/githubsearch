@@ -40,7 +40,7 @@ class SearchResults extends Component {
               </li>
             })}
           </ul>
-          <div style={{ display: this.shouldShowEmptyResultText() ? 'block' : 'none' }}>
+          <div style={{ display: this.shouldShowEmptyResultText(results.length, pagesLoaded) ? 'block' : 'none' }}>
             <EmptyResults />
           </div>
         </div>
